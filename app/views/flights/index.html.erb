@@ -1,0 +1,49 @@
+<h1>Flights#index</h1>
+<p>Find me in app/views/flights/index.html.erb</p>
+
+<%= form_for(@flight, url: flights_index_path, method: :get) do |f| %>
+  <%= f.label :departure_airport_id , "Departure Airport"%>
+  <%= f.select(:departure_airport_id, @departure_airport_options)%>
+
+  <%= f.label :arrival_airport_id , "Arrival Airport"%>
+  <%= f.select(:arrival_airport_id, @arrival_airport_options)%>
+
+  <%= f.label :departure_time, "Departure Date" %>
+  <%= f.select(:departure_time, @departure_time_options)%>
+  <!-- <%= f.date_field :departure_time %> -->
+
+
+
+  <%= f.submit "Search", class: :buttons %>
+<% end %>
+
+
+
+<h2> Flights </h2>
+
+<% if @flights.empty? %>
+  No flights match your search criteria
+<% else %>
+  <%= form_for(@flight, url: new_booking_path, method: :get) do |f| %>
+
+    <% @flights.each do |flight| %>
+      <div class="radio_button">
+        <%= radio_button_tag("flight_id" , flight.id , :required => true) %>
+        <div class="radio_button_label">
+          <%= label "flight_id_#{flight.id}" , "#{flight.departure_airport.name}   \u2708  #{flight.arrival_airport.name}"  %>
+          <%= label "flight_id_#{flight.id}" ,
+                  flight.departure_time.to_formatted_s(:long)    %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= label_tag :number_of_passengers , "Number of Passengers" %>
+    <%= number_field_tag "number_of_passengers" , 1,  in: 1 .. 10 %>
+
+
+  <%= f.submit "Select", class: :buttons%>
+<% end %>
+
+
+
+<% end %>

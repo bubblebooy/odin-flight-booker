@@ -1,0 +1,26 @@
+<h1> Booking</h1>
+<div class="flight_info">
+  <p> <%= @booking.flight.departure_airport.name %>  &#x2708;  <%= @booking.flight.arrival_airport.name  %> </p>
+  <p> Departing:  <%= @booking.flight.departure_time.to_formatted_s(:long)  %> </p>
+</div>
+
+<p> <%= "#{@number_of_passengers}  #{'Passenger'.pluralize(@number_of_passengers)}:" %> </p>
+
+<!-- <p> <%= @passengers.inspect %> </p> -->
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight, value: @booking.flight.id %>
+  <ul>
+    <% @number_of_passengers.times do |passenger_index| %>
+        <%= f.fields_for :passengers , @booking.passenger, index:passenger_index do |passenger_form| %>
+          <li>
+              <%= passenger_form.label :name %>
+              <%= passenger_form.text_field :name %>
+
+              <%= passenger_form.label :email %>
+              <%= passenger_form.email_field :email %>
+          </li>
+          <% end %>
+      <% end %>
+  </ul>
+  <%= f.submit %>
+<% end %>

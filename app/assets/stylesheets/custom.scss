@@ -1,0 +1,47 @@
+
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  display: inline-block;
+}
+
+li {
+  list-style: none;
+
+}
+
+.radio_button{
+  border-bottom-style: solid;
+  border-color: lightgrey;
+  margin-bottom: 5px;
+  .radio_button_label{
+    display: inline-block;
+  }
+  label{
+    display: block;
+  }
+
+}
+
+.buttons{
+  display: block;
+}
+
+.flight_info{
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.booking{
+  padding: 5px;
+  border-radius: 3px;
+  background-color: lightgreen;
+  margin-bottom: 10px;
+}
