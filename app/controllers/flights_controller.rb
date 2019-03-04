@@ -6,7 +6,8 @@ class FlightsController < ApplicationController
     @departure_airport_options.unshift ["ANY",nil]
     @arrival_airport_options = Airport.all.map{ |u| [ "#{u.name} (#{u.code})", u.id ] }
     @arrival_airport_options.unshift ["ANY",nil]
-    @departure_time_options = Flight.select(:departure_time).group('DATE(departure_time)').map{ |u| [ u.departure_time.to_formatted_s(:month_day_comma_year), u.departure_time.to_date ] }
+    @departure_time_options = Flight.select(:departure_time).map{ |u| [ u.departure_time.to_formatted_s(:month_day_comma_year), u.departure_time.to_date ] }
+    #.group('DATE(departure_time)')  // does not work with PG
     @departure_time_options.unshift [nil,nil]
     @flights = Flight.all
 
