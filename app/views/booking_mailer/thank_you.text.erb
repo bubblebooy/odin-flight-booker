@@ -1,0 +1,8 @@
+Thanks you for booking your flight with us
+<% passenger = @booking.passenger %>
+
+<%= passenger.name %>,
+
+  Hello
+
+  You have book a flight from <%= @booking.flight.departure_airport.name %> to <%= @booking.flight.arrival_airport.name %> leaving at <%= @booking.flight.departure_time %>

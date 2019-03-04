@@ -27,6 +27,10 @@ class BookingsController < ApplicationController
     if (@passengers + @bookings).all?(&:valid?)
       @passengers.each(&:save)
       @bookings.each(&:save)
+      @bookings.each do |booking|
+          BookingMailer.thank_you(booking).deliver_now
+      end
+
       redirect_to bookings_path
     else
       redirect_back(fallback_location: root_path)

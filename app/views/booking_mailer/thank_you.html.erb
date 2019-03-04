@@ -1,0 +1,12 @@
+<h1>Thanks you for booking your flight with us</h1>
+<% passenger = @booking.passenger %>
+
+<p> <%= passenger.name %>, </p>
+<p>
+  Hello
+</p>
+<p>
+  You have book a flight from <%= @booking.flight.departure_airport.name %>
+  to <%= @booking.flight.arrival_airport.name %>
+  leaving at <%= @booking.flight.departure_time %> 
+</p>
